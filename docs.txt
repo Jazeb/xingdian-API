@@ -1,0 +1,99 @@
+﻿API Name: xingdian ERP
+Official Interface Address: http://api.xingdian.me/qimenwms/post ;
+
+Corresponding official platform: http://fenxiao.xingdian.me/;
+
+Test data: 
+    app_key ：213094318 
+    customerId：C03224002
+    key：9455G6HHuA2D1
+
+URL parameters:
+    app_key: 
+    customerId:
+    format: data format (xml)
+    method: interface method (deliveryorder.create)
+    sign_method: signature method used to generate sign, MD5 32bit UPPERCASE
+    timestamp: timestamp in this format (YYYY-MM-DD HH:MM:SS)   
+    sign: generated 32 bit hash code
+    ver: interface version 2.1
+
+sign:   signature is a hash code generated from the following string:
+        var str = method + timestamp + customerId + body + key
+        you need to write a function that will generated hash code from str.
+
+post: xml
+
+body: body is the xml file body.xml file
+
+Example URL for request:
+
+    http://api.fuqiantonglu.com/qimenwms/post?app_key=***&customerId=***&format=xml&method=deliveryorder.create&sign_method=md5&timestamp=2016-12-21 16:06:01&sign=875FEEBD03D2AA43E838EB013F8B6015&ver=2.1
+
+
+return result: return result will be in xml format
+        <?xml version="1.0" encoding="utf-8"?>
+            <response>
+                <flag>success|failure</flag>
+                <code>响应码</code>
+                <message>响应信息</message>
+            </response>
+
+
+xml body:
+
+<?xml version="1.0" encoding="utf-8"?>
+<request>
+      <deliveryOrder>
+        <deliveryOrderCode>123456789</deliveryOrderCode>
+        <shopCode>123</shopCode>
+        <orderType>JYCK</orderType>
+        <warehouseCode>OTHER</warehouseCode>
+        <sourcePlatformCode>U</sourcePlatformCode>
+        <createTime>2018-09-27 02:35:18</createTime>
+        <placeOrderTime>2018-09-27 02:40:18</placeOrderTime>
+        <payTime>2018-09-27 02:50:18</payTime>
+        <payNo>1234</payNo>
+        <operateTime>2018-09-27 02:50:18</operateTime>
+        <shopNick>123</shopNick>
+        <sellerNick>123seller</sellerNick>
+        <buyerNick>123buy</buyerNick>
+        <totalAmount>100</totalAmount>
+        <itemAmount>100</itemAmount>
+        <logisticsCode>YTO</logisticsCode>
+        <senderInfo>
+          <name>seller</name>
+          <mobile>13012367890</mobile>
+          <province>SH</province>
+          <city>SH</city>
+          <area>xuhui</area>
+          <detailAddress>xuhui123456</detailAddress>
+        </senderInfo>
+        <receiverInfo>
+          <name>yyy</name>                 
+          <mobile>13012367891</mobile>              
+          <province>JS</province>               
+          <city>CA</city>      
+          <area>AA</area>
+          <detailAddress>XX1234</detailAddress>
+          <idCard>33332000002101020100</idCard>
+          <realName>小明</realName>
+        </receiverInfo>
+        <payInfo>              
+         <platform>weixin</platform> 
+         <reportPayNo>123567</reportPayNo> 
+        </payInfo>
+        <buyerMessage>#PayPlatformName:微信支付#</buyerMessage>
+        <sellerMessage/>
+      </deliveryOrder>        
+      <orderLines>           
+        <orderLine>
+              <sourceOrderCode>100125</sourceOrderCode>            
+              <ownerCode>123456789</ownerCode>  
+              <itemCode>311517652150003116</itemCode>               
+              <itemName>经典洗发露</itemName>           
+              <planQty>1</planQty>               
+              <actualPrice>185.5</actualPrice>
+            </orderLine>
+      </orderLines>
+</request>
